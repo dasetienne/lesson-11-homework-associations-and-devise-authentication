@@ -1,0 +1,11 @@
+  <h1><%= @article.title %></h1><br>
+
+  <%= @article.body %><br>
+
+  <p>Author: <%= @article.author.name %></p>
+
+  <% @article.tags.each do |tag| %>
+  <%= tag.name %>
+  <% end %>
+
+  <br><%= link_to "All Articles", articles_path %>

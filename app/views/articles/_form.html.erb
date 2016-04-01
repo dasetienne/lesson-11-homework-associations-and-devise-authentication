@@ -1,0 +1,30 @@
+<%= form_for :article, url: articles_path do |article| %>
+
+  <% if @article.errors.any? %>
+    <% @article.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+  <p>
+    <%= article.label :title %><br>
+    <%= article.text_field :title %>
+  </p>
+
+  <p> <%= article.label :body %><br>
+      <%= article.text_area :body %>
+  </p>
+
+  <p>
+    <%= article.label :author %><br>
+    <%= collection_select(:article, :author_id, Author.all, :id, :name, include_blank: true) %>
+  </p>
+
+  <p>
+    <%= collection_check_boxes(:article, :tag_ids, Tag.all, :id, :name) %>
+  </p>
+
+  <p> <%= article.submit %>
+  </p>
+
+  <% end %>
+
