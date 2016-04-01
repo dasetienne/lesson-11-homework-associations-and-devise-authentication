@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [ :index, :show ]
+
   def index
     @articles = Article.all
   end
@@ -29,8 +31,6 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-
-    @article = article.update(article_params)
 
     if @article.update(article_params)
       flash[:notice] = "Article has been updated."
